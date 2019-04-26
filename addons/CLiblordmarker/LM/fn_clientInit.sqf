@@ -20,7 +20,7 @@
 
 diag_log "Successfully loaded the CLiblordmarker/LM module on the client";
 
-FUNC(markerErstellen) = 
+DFUNC(markerErstellen) = 
 {
 	params 
 	[
@@ -67,8 +67,8 @@ FUNC(markerErstellen) =
 		};
 	};
 
-	GVAR(markerpooleast) = ["OPTEAST","colorOPFOR",(count GVAR(unitseast))] call FUNC(markerErstellen);
-	GVAR(markerpoolwest)  = ["OPTWEST","colorBLUFOR",(count GVAR(unitswest))] call FUNC(markerErstellen);
+	GVAR(markerpooleast) = ["OPTEAST","colorOPFOR",(count GVAR(unitseast))] call DFUNC(markerErstellen);
+	GVAR(markerpoolwest)  = ["OPTWEST","colorBLUFOR",(count GVAR(unitswest))] call DFUNC(markerErstellen);
 	
 }, []] call CFUNC(addEventHandler); 
 
