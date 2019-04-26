@@ -26,12 +26,12 @@ FUNC(markerErstellen) =
 	[
 		["_Name",""],
 		["_Color",""],
-		["_units",""]
+		["_unitscount",0]
 	];
 
 	private _markerpool = [];
 	
-	for "_i" from 0 to _units do 
+	for "_i" from 0 to _unitscount do 
 	{ 
 		private _marker = createMarkerLocal [format["%1_%2", _Name, _i], [0,0]];
 		_marker setMarkerTypeLocal "mil_triangle";
@@ -49,26 +49,26 @@ FUNC(markerErstellen) =
 	diag_log "Marker started";
 	
 	private _units = playableUnits;
-	markerpooleast = [];
-	markerpoolwest = [];
-	unitseast = [];
-	unitswest = [];
+	GVAR(markerpooleast) = [];
+	GVAR(markerpoolwest) = [];
+	GVAR(unitseast) = [];
+	GVAR(unitswest) = [];
 
-	for "_i" from 0 to count _units do 
+	_units apply 
 	{ 
-		if (side (_units select _i) isEqualTo west) then
+		if (side _x isEqualTo west) then
 		{
-			unitswest pushBack (_units select _i);
+			GVAR(unitswest) pushBack _x;
 		};
 
-		if (side (_units select _i) isEqualTo east) then
+		if (side _x isEqualTo east) then
 		{
-			unitseast pushBack (_units select _i);
+			GVAR(unitseast) pushBack _x;
 		};
 	};
 
-	markerpooleast = ["OPTEAST","colorOPFOR",(count unitseast)] call FUNC(markerErstellen);
-	markerpoolwest = ["OPTWEST","colorBLUFOR",(count unitswest)] call FUNC(markerErstellen);
+	GVAR(markerpooleast) = ["OPTEAST","colorOPFOR",(count GVAR(unitseast))] call FUNC(markerErstellen);
+	GVAR(markerpoolwest)  = ["OPTWEST","colorBLUFOR",(count GVAR(unitswest))] call FUNC(markerErstellen);
 	
 }, []] call CFUNC(addEventHandler); 
 
@@ -82,52 +82,52 @@ GVAR(Unitmarker) =
 	private _unitswest = [];
 	private _unitsdeath = [];
 		
-	for "_i" from 0 to count _units do 
+	_units apply 
 	{ 
-		if ((alive (_units select _i)) and (side (_units select _i) isEqualTo west)) then
+		if ((alive _x) and (side _x isEqualTo west)) then
 		{
-			_unitswest pushBack (_units select _i);
+			_unitswest pushBack _x;
 		};
 
-		if ((alive (_units select _i)) and (side (_units select _i) isEqualTo east)) then
+		if ((alive _x) and (side _x isEqualTo east)) then
 		{
-			_unitseast pushBack (_units select _i);
+			_unitseast pushBack _x;
 		};
 
-		if (!alive (_units select _i)) then
+		if (!alive _x) then
 		{
-			_unitsdeath pushBack (_units select _i);
+			_unitsdeath pushBack _x;
 		};
 	};
 	
 	for "_i" from 0 to count _unitswest do 
 	{ 
 		
-		(markerpoolwest select _i) setmarkerpos getPosWorld (_unitswest select _i);
-		(markerpoolwest select _i) setmarkerdir getdir (_unitswest select _i);
-		(markerpoolwest select _i) setMarkerTextLocal format["%1",name (_unitswest select _i)];
+		(GVAR(markerpoolwest) select _i) setmarkerpos getPosWorld (_unitswest select _i);
+		(GVAR(markerpoolwest) select _i) setmarkerdir getdir (_unitswest select _i);
+		(GVAR(markerpoolwest) select _i) setMarkerTextLocal format["%1",name (_unitswest select _i)];
 	};	
 
 	for "_i" from 0 to count _unitseast do 
 	{ 
 		
-		(markerpooleast select _i) setmarkerpos getPosWorld (_unitseast select _i);
-		(markerpooleast select _i) setmarkerdir getdir (_unitseast select _i);
-		(markerpooleast select _i) setMarkerTextLocal format["%1",name (_unitseast select _i)];	
+		(GVAR(markerpooleast) select _i) setmarkerpos getPosWorld (_unitseast select _i);
+		(GVAR(markerpooleast) select _i) setmarkerdir getdir (_unitseast select _i);
+		(GVAR(markerpooleast) select _i) setMarkerTextLocal format["%1",name (_unitseast select _i)];	
 	};
 
 	for "_i" from 0 to count _unitsdeath do 
 	{ 
-		if (side (_units select _i) isEqualTo west) then
+		if (side (_unitsdeath select _i) isEqualTo west) then
 		{
-			(markerpoolwest select _i) setmarkerpos [0,0,0];
-			(markerpoolwest select _i) setMarkerTextLocal format["%1",""];
+			(GVAR(markerpoolwest) select _i) setmarkerpos [0,0,0];
+			(GVAR(markerpoolwest) select _i) setMarkerTextLocal format["%1",""];
 		};
 
-		if ((_units select _i) isEqualTo east) then
+		if (side (_unitsdeath select _i) isEqualTo east) then
 		{
-			(markerpooleast select _i) setmarkerpos [0,0,0];
-			(markerpooleast select _i) setMarkerTextLocal format["%1",""];
+			(GVAR(markerpooleast) select _i) setmarkerpos [0,0,0];
+			(GVAR(markerpooleast) select _i) setMarkerTextLocal format["%1",""];
 		};
 	};
 
