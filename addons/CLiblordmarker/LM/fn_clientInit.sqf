@@ -67,12 +67,10 @@ DFUNC(markerErstellen) =
 		};
 	};
 
-	GVAR(markerpooleast) = ["OPTEAST","colorOPFOR",(count GVAR(unitseast))] call DFUNC(markerErstellen);
-	GVAR(markerpoolwest)  = ["OPTWEST","colorBLUFOR",(count GVAR(unitswest))] call DFUNC(markerErstellen);
+	GVAR(markerpooleast) = ["OPTEAST","colorOPFOR",(count GVAR(unitseast))] call FUNC(markerErstellen);
+	GVAR(markerpoolwest)  = ["OPTWEST","colorBLUFOR",(count GVAR(unitswest))] call FUNC(markerErstellen);
 	
 }, []] call CFUNC(addEventHandler); 
-
-
 
 GVAR(Unitmarker) = 
 [
