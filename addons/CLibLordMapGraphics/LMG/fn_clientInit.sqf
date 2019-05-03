@@ -77,8 +77,23 @@ DFUNC(markerModified3) =
 	["M1", "dblclicked", {systemChat "M1"	
 	}, player] call CFUNC(addMapGraphicsEventHandler);
 
-	//[10007] call CFUNC(registerMapControl);
+	 GVAR(CuratorMapCheckRunning) = true;
 
+    [{
+        GVAR(CuratorMapCheckRunning) = false;
+        ((findDisplay 444001) displayCtrl 10007) call CFUNC(registerMapControl);
+    }, {!(isNull ((findDisplay 444001) displayCtrl 10007))}] call CFUNC(waitUntil);
+
+    ["inCuratorChanged", 
+	{
+        (_this select 0) params ["_new"];
+        if (GVAR(CuratorMapCheckRunning)) exitWith {};
+        GVAR(CuratorMapCheckRunning) = true;
+        [{
+            GVAR(CuratorMapCheckRunning) = false;
+            ((findDisplay 444001) displayCtrl 10007) call CFUNC(registerMapControl);
+        }, {!(isNull ((findDisplay 444001) displayCtrl 10007))}] call CFUNC(waitUntil);
+	}] call CFUNC(addEventhandler);
 		
 }, []] call CFUNC(addEventHandler); 
 
