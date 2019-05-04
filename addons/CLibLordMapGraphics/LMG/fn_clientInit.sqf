@@ -76,27 +76,33 @@ DFUNC(markerModified3) =
 
 	["M1", "dblclicked", {systemChat "M1"	
 	}, player] call CFUNC(addMapGraphicsEventHandler);
-
-	 GVAR(CuratorMapCheckRunning) = true;
-
-    [{
-        GVAR(CuratorMapCheckRunning) = false;
-        ((findDisplay 444001) displayCtrl 10007) call CFUNC(registerMapControl);
-    }, {!(isNull ((findDisplay 444001) displayCtrl 10007))}] call CFUNC(waitUntil);
-
-    ["inCuratorChanged", 
-	{
-        (_this select 0) params ["_new"];
-        if (GVAR(CuratorMapCheckRunning)) exitWith {};
-        GVAR(CuratorMapCheckRunning) = true;
-        [{
-            GVAR(CuratorMapCheckRunning) = false;
-            ((findDisplay 444001) displayCtrl 10007) call CFUNC(registerMapControl);
-        }, {!(isNull ((findDisplay 444001) displayCtrl 10007))}] call CFUNC(waitUntil);
-	}] call CFUNC(addEventhandler);
-		
+  	
 }, []] call CFUNC(addEventHandler); 
 
+GVAR(controlCheck) = 
+[
+	{
+		//Eigender Dialog
+		if (!(isNull ((findDisplay 444001) displayCtrl 10007))) then
+		{
+			((findDisplay 444001) displayCtrl 10007) call CFUNC(registerMapControl);
+			[{}, {(isNull ((findDisplay 444001) displayCtrl 10007))}] call CFUNC(waitUntil);	
+		};
 
+		//BIS Artillery Dialog
+		if (!(isNull ((findDisplay -1) displayCtrl 500))) then
+		{
+			((findDisplay -1) displayCtrl 500) call CFUNC(registerMapControl);
+			[{}, {(isNull ((findDisplay -1) displayCtrl 500))}] call CFUNC(waitUntil);	
+		};
 
+		//BIS  UAV Dialog (klappt nicht)
+		if (!(isNull ((findDisplay 160) displayCtrl -1))) then
+		{
+			((findDisplay 160) displayCtrl -1) call CFUNC(registerMapControl);
+			[{}, {(isNull ((findDisplay 160) displayCtrl -1))}] call CFUNC(waitUntil);	
+		};
 
+	}, 0, []
+	
+] call CFUNC(addPerFrameHandler);
