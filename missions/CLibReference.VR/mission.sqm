@@ -8,18 +8,18 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=32;
+		nextID=35;
 	};
 	class LayerIndexProvider
 	{
-		nextID=20;
+		nextID=24;
 	};
 	class Camera
 	{
-		pos[]={1495.5234,10.583823,4673.9746};
-		dir[]={-0.44149843,-0.11286116,0.89019722};
-		up[]={-0.050178979,0.99359882,0.10117467};
-		aside[]={0.89591885,1.5819096e-006,0.44433632};
+		pos[]={1495.2192,12.92124,4672.0566};
+		dir[]={-0.4007507,-0.5484305,0.7339859};
+		up[]={-0.26283392,0.83616799,0.48138618};
+		aside[]={0.87774491,1.4306861e-006,0.47924361};
 	};
 };
 binarizationWanted=0;
@@ -30,13 +30,14 @@ addons[]=
 	"A3_Ui_F",
 	"A3_Weapons_F_Ammoboxes",
 	"A3_Structures_F_Mil_Flags",
-	"A3_Static_F_Mortar_01"
+	"A3_Static_F_Mortar_01",
+	"A3_Armor_F_Gamma_MBT_01"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=6;
+		items=7;
 		class Item0
 		{
 			className="A3_Characters_F_Orange";
@@ -79,6 +80,13 @@ class AddonsMetaData
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
 		};
+		class Item6
+		{
+			className="A3_Armor_F_Gamma";
+			name="Arma 3 - Armored Land Vehicles";
+			author="Bohemia Interactive";
+			url="https://www.arma3.com";
+		};
 	};
 };
 randomSeed=11271392;
@@ -109,7 +117,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=8;
+		items=11;
 		class Item0
 		{
 			dataType="Group";
@@ -775,6 +783,55 @@ class Mission
 			};
 			id=31;
 			type="B_G_Mortar_01_F";
+		};
+		class Item8
+		{
+			dataType="Trigger";
+			position[]={1499.682,5,4679.166};
+			class Attributes
+			{
+				text="ControlAnzeige";
+				condition="call{this}";
+				onActivation="call{Hint format [""Control:%1"",allControls findDisplay 160];}";
+				sizeA=0;
+				sizeB=0;
+				repeatable=1;
+				activationBy="ALPHA";
+			};
+			id=32;
+			type="EmptyDetector";
+		};
+		class Item9
+		{
+			dataType="Trigger";
+			position[]={1502.9041,5,4670.812};
+			class Attributes
+			{
+				text="DisplayAnzeige";
+				condition="call{this}";
+				onActivation="call{Hint format [""Display:%1"",allControls findDisplay 160];}";
+				sizeA=0;
+				sizeB=0;
+				repeatable=1;
+				activationBy="BRAVO";
+			};
+			id=33;
+			type="EmptyDetector";
+		};
+		class Item10
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={1485.3831,7.0150433,4682.167};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=34;
+			type="B_MBT_01_mlrs_F";
 		};
 	};
 };

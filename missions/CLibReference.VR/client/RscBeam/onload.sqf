@@ -12,3 +12,7 @@ disableSerialization;
 private _display = findDisplay DIALOG_BEAM_IDD;
 private _lb = _display displayCtrl DIALOG_BEAM_LB_IDC;
 
+sleep 1;
+
+Hint format ["%1",(findDisplay 160)];
+
