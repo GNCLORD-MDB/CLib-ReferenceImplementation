@@ -26,7 +26,7 @@ GVAR(Testruckgabe) = [];
 
 private _block = ["M1","Spieler",[1,1,1,1],"Haus",1,(getpos H1),45];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(dynmarkerverwaltung,markererstellenNormal);
+GVAR(Testruckgabe) = [_block] call OFUNC(markererstellenNormal);
 };
 
 DFUNC(Datenblock2) = 
@@ -35,7 +35,7 @@ GVAR(Testruckgabe) = [];
 
 private _block = ["M2","Spieler",[1,1,1,1],"Haus",1,getpos H2,45];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(dynmarkerverwaltung,markererstellenNormal);
+GVAR(Testruckgabe) = [_block] call OFUNC(markererstellenNormal);
 
 };
 
@@ -45,7 +45,7 @@ GVAR(Testruckgabe) = [];
 
 private _block = ["M3","Spieler",[1,1,1,1],"Haus",1,getpos H3,45];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(dynmarkerverwaltung,markererstellenNormal);
+GVAR(Testruckgabe) = [_block] call OFUNC(markererstellenNormal);
 
 };
 
@@ -55,7 +55,7 @@ GVAR(Testruckgabe) = [];
 
 private _block = ["M4","Spieler",[1,1,1,1],"Haus",1,getpos H4,45];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(dynmarkerverwaltung,markererstellenNormal);
+GVAR(Testruckgabe) = [_block] call OFUNC(markererstellenNormal);
 
 };
 
