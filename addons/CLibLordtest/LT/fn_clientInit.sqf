@@ -26,7 +26,7 @@ GVAR(Testruckgabe) = [];
 
 private _block = ["M1","Spieler",[0,0,1,1],"Haus",1,(getpos H1),45];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(markererstellenNormal);
+GVAR(Testruckgabe) = _block call OFUNC(markerErstellen);
 
 systemChat format ["R:%1",GVAR(Testruckgabe)];
 
@@ -38,7 +38,7 @@ GVAR(Testruckgabe) = [];
 
 private _block = ["M1"];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(markerloschen);
+GVAR(Testruckgabe) = _block call OFUNC(markerLoeschen);
 
 systemChat format ["R:%1",GVAR(Testruckgabe)];
 
@@ -50,11 +50,11 @@ GVAR(Testruckgabe) = [];
 
 private _block = ["M1"];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(markerloschen);
+GVAR(Testruckgabe) = _block call OFUNC(markerLoeschen);
 
 private _block = ["M1","Revive",[1,0,0,1],"Haus getötet",1,getpos H3,150];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(markererstellenNormal);
+GVAR(Testruckgabe) = _block call OFUNC(markerErstellen);
 
 systemChat format ["R:%1",GVAR(Testruckgabe)];
 
@@ -66,7 +66,7 @@ GVAR(Testruckgabe) = [];
 
 private _block = ["M4","Spieler",[1,1,1,1],"Haus",1,getpos H4,45,"60s"];
 
-GVAR(Testruckgabe) = [_block] call OFUNC(markererstellenHover);
+GVAR(Testruckgabe) = _block call OFUNC(markerErstellenMitHover);
 
 systemChat format ["R:%1",GVAR(Testruckgabe)];
 
