@@ -1,5 +1,6 @@
 // include the required addons directly from CLib
 #include "\tc\CLib\addons\CLib\ModuleMacros.hpp"
+#include "macros.hpp"
 
 // This file is kind of the CLib-correspondant to the standard CfgFunctions - though it got way more features
 // concerning both: security and debuggabilty (e.g. full stack-traces).
@@ -8,7 +9,9 @@
 class CfgCLibModules {
 	// This is the name of this mod as can be used to refer to it via the Clib-framework
 	// casing does not matter (all names are being transformed to lower-cases)
-    class PerformanceMonitor {
+	// The name should be given via the PREFIX macro in order to be able to use the FUNC macro to
+	// refer to functions defined here. Everything else will lead to confusion.
+    class PREFIX {
 		// Specify the absolute path of the root of all listed modules below
 		// this is determined by the used PBO-prefix
         path = "rvn\clibref\addons\clibref";
@@ -23,7 +26,7 @@ class CfgCLibModules {
 		dependency[] = {};
 		
 		// the module-names are also case-insensitive
-		MODULE(PFH) {
+		MODULE(PerFrame) {
 			// The dependency-array specifies on which components inside the CLib-framework this particular
 			// module is dependent.
 			dependency[] = {"CLib/PerFrame", "Clib/Events"};
@@ -32,6 +35,12 @@ class CfgCLibModules {
 			// This is actually a special function as this is an entry point (see at the bottom of this file)
 			FNC(clientInit);
 		};
+		
+		MODULE(Events) {
+			dependency[] = {"CLib/Events"};
+			
+			FNC(clientInit);
+		}
     };
 };
 

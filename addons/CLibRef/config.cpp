@@ -1,13 +1,13 @@
 #include "macros.hpp"
 class CfgPatches {
-    class ClibRef {
+    class PREFIX {
         units[] = {};
         weapons[] = {};
         requiredVersion = 1.70;
         author = "Raven";
         authors[] = {"Raven"};
         authorUrl = "";
-        version = VERSION;
+        version = QUOTE(VERSION);
         versionStr = QUOTE(VERSION);
         versionAr[] = {VERSION_AR};
         requiredAddons[] = {"CLib"}; // mark dependency on the CLib-mod

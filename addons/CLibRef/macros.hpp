@@ -7,7 +7,7 @@
 
 // Define version information of this mod
 #define MAJOR 1
-#define MINOR 0
+#define MINOR 1
 #define PATCHLVL 0
 #define BUILD 0
 
@@ -38,6 +38,6 @@
 // Unless you know what you are doing I recommend disabling compression by leaving this macro defined.
 #define DISABLECOMPRESSION
 
-// include the defualt CLib-macros (providing GVAR and similar)
+// include the default CLib-macros (providing GVAR and similar)
 // Found here: https://github.com/TaktiCool/CLib/blob/master/addons/CLib/macros.hpp
 #include "\tc\CLib\addons\CLib\macros.hpp"
