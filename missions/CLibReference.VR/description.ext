@@ -1,20 +1,9 @@
-onLoadIntroTime=false;
-onLoadMissionTime=false;
-disabledAI=0;
-debriefing=1;
-showGPS=1;
-Respawn = 3;
-RespawnDelay = 20;
-RespawnDialog = 0;
-enabledebugconsole = true;
-
-#include "RscBasicDefines.hpp"
-#include "client\RscBeam\dialog.hpp"
-
-
 class CLib {
 	// Specify which modules (Mods) should get loaded for this mission
-    Modules[] = {"CLib", "Coopetition", "Streamator", "PerformanceMonitor","LordMarker","LordMapGraphics"};
+	// If one only wants to load a particular Module from a Mod, one can specify it in this way: "Mod/Module"
+	// So if you want to load the "Revive" module from the "MyRevive" mod, you'd write "MyRevive/Revive". All
+	// of the module's dependencies are loaded automatically as well.
+    Modules[] = {"CLib", "CLibRef"};
 	
 	// Some more advanced CLib-options. Leave them at those values if you aren't sure what you're doing
     useExperimentalAutoload = 0;
