@@ -18,67 +18,85 @@
  * 
  */
 
-diag_log "Successfully loaded the CLibLord/LT module on the client";
+DUMP("Successfully loaded the CLibLord/LT module on the client");
+
+// Event Liste
+#include "Events.hpp"
+
 
 DFUNC(Datenblock1) = 
 {
-GVAR(Testruckgabe) = [];
 
-private _block = ["M1","Spieler",[0,0,1,1],"Haus",1,(getpos H1),45];
+		private _id = 0;
 
-GVAR(Testruckgabe) = _block call OFUNC(markerErstellen);
+    	private _markerDatenblock = 
+		[
+		[0,0,0],
+		"normal",
+		w1,
+		format ["%1",name w1],
+		"mil_triangle",
+		getdir w1,
+		[0,0,1,1]		
+		];
 
-systemChat format ["R:%1",GVAR(Testruckgabe)];
+		_id = [OPT_ADD_MARKER, _markerDatenblock] call CFUNC(localEvent);
+		
+		systemChat format ["R:%1",_id];
 
 };
 
 DFUNC(Datenblock2) = 
 {
-GVAR(Testruckgabe) = [];
 
-private _block = ["M1"];
+		private _id = 0;
 
-GVAR(Testruckgabe) = _block call OFUNC(markerLoeschen);
+    	private _markerDatenblock = 
+		[
+		[0,0,0],
+		"realtime",
+		W2,
+		format ["%1",name w2],
+		"mil_triangle",
+		getdir w2,
+		[0,0,1,1]		
+		];
 
-systemChat format ["R:%1",GVAR(Testruckgabe)];
+		_id = [OPT_ADD_MARKER, _markerDatenblock] call CFUNC(localEvent);
+		
+		systemChat format ["R:%1",_id];
 
 };
 
 DFUNC(Datenblock3) = 
 {
-GVAR(Testruckgabe) = [];
 
-private _block = ["M1"];
-
-GVAR(Testruckgabe) = _block call OFUNC(markerLoeschen);
-
-private _block = ["M1","Revive",[1,0,0,1],"Haus getötet",1,getpos H3,150];
-
-GVAR(Testruckgabe) = _block call OFUNC(markerErstellen);
-
-systemChat format ["R:%1",GVAR(Testruckgabe)];
+[OPT_SET_MARKER_TEXT, [0,"Ist Tod"]] call CFUNC(localEvent);	
 
 };
 
 DFUNC(Datenblock4) = 
 {
-GVAR(Testruckgabe) = [];
 
-private _block = ["M4","Spieler",[1,1,1,1],"Haus",1,getpos H4,45,"60s"];
+[OPT_SET_MARKER_ICON, [0,"loc_Hospital"]] call CFUNC(localEvent);	
 
-GVAR(Testruckgabe) = _block call OFUNC(markerErstellenMitHover);
+};
 
-systemChat format ["R:%1",GVAR(Testruckgabe)];
+DFUNC(Datenblock5) = 
+{
+
+[OPT_SET_MARKER_ICON, [0,"mil_triangle"]] call CFUNC(localEvent);			
 
 };
 
 ["missionStarted", {
-	diag_log "The mission has started";
+	diag_log "CLibLord/LT";
 
-	F1 addAction [("<t color=""#F60707"">" + ("Marker erstellen") + "</t>"), {[] call FUNC(Datenblock1);},"", 6, false, true, "", ""];
-	F1 addAction [("<t color=""#F60707"">" + ("Marker löschen") + "</t>"), {[] call FUNC(Datenblock2);},"", 6, false, true, "", ""];
-	F1 addAction [("<t color=""#F60707"">" + ("Marker ändern") + "</t>"), {[] call FUNC(Datenblock3);},"", 6, false, true, "", ""];
-	F1 addAction [("<t color=""#F60707"">" + ("Marker Hover erstellen") + "</t>"), {[] call FUNC(Datenblock4);},"", 6, false, true, "", ""];
+	F1 addAction [("<t color=""#F60707"">" + ("OPTADDMARKER W1") + "</t>"), {[] call FUNC(Datenblock1);},"", 6, false, true, "", ""];
+	F1 addAction [("<t color=""#F60707"">" + ("OPTADDMARKER W2") + "</t>"), {[] call FUNC(Datenblock2);},"", 6, false, true, "", ""];	
+	F1 addAction [("<t color=""#F60707"">" + ("OPTSETMARKERTEXT") + "</t>"), {[] call FUNC(Datenblock3);},"", 6, false, true, "", ""];
+	F1 addAction [("<t color=""#F60707"">" + ("OPTSETMARKERICON revive") + "</t>"), {[] call FUNC(Datenblock4);},"", 6, false, true, "", ""];
+	F1 addAction [("<t color=""#F60707"">" + ("OPTSETMARKERICON normal") + "</t>"), {[] call FUNC(Datenblock5);},"", 6, false, true, "", ""];
  	
 }, []] call CFUNC(addEventHandler); 
 

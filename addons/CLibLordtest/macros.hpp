@@ -27,10 +27,10 @@
 // If you are currently working on this mod, you should define the ISDEV macro
 
 // Do not release with this setting enabled!
-// #define DEBUGFULL // Enable all debug methods
-// #define ISDEV // Enable better logging
-// #define ENABLEPERFORMANCECOUNTER // Enable performance counter for function calls
-// #define ENABLEFUNCTIONTRACE // Enable SQF based function tracer
+#define DEBUGFULL // Enable all debug methods
+#define ISDEV // Enable better logging
+#define ENABLEPERFORMANCECOUNTER // Enable performance counter for function calls
+#define ENABLEFUNCTIONTRACE // Enable SQF based function tracer
 
 
 // When transmitting the functions from server to client, the code can be transferred over the net

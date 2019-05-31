@@ -101,8 +101,9 @@ GVAR(controlCheck) =
 		[{((findDisplay -1) displayCtrl 500) call CFUNC(registerMapControl)}, {(!(isNull ((findDisplay -1) displayCtrl 500)))}] call CFUNC(waitUntil);	
 		
 		//BIS  UAV Dialog (klappt nicht)
-		[{((findDisplay 160) displayCtrl -1) call CFUNC(registerMapControl)}, {(!(isNull ((findDisplay 160) displayCtrl -1)))}] call CFUNC(waitUntil);	
-		
+	
+		[{((findDisplay 160) displayCtrl 51) call CFUNC(registerMapControl)}, {(!(isNull ((findDisplay 160) displayCtrl 51)))}] call CFUNC(waitUntil);	
+			
 	}, 0, []
 	
 ] call CFUNC(addPerFrameHandler);
