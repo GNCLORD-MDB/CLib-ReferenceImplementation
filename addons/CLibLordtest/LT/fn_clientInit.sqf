@@ -40,7 +40,7 @@ DFUNC(Datenblock1) =
 		[0,0,1,1]		
 		];
 
-		_id = [OPT_ADD_MARKER, _markerDatenblock] call CFUNC(localEvent);
+		_id = _markerDatenblock call OFUNC(addMarker);
 		
 		systemChat format ["R:%1",_id];
 
@@ -62,7 +62,7 @@ DFUNC(Datenblock2) =
 		[0,0,1,1]		
 		];
 
-		_id = [OPT_ADD_MARKER, _markerDatenblock] call CFUNC(localEvent);
+		_id = _markerDatenblock call OFUNC(addMarker);
 		
 		systemChat format ["R:%1",_id];
 
